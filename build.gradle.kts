@@ -3,6 +3,7 @@ plugins {
 	kotlin("plugin.spring") version "1.9.25"
 	id("org.springframework.boot") version "3.4.4"
 	id("io.spring.dependency-management") version "1.1.7"
+	id("org.jooq.jooq-codegen-gradle") version "3.19.11"
 }
 
 group = "com.example"
@@ -19,14 +20,17 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-jdbc")
+	implementation("org.springframework.boot:spring-boot-starter-jooq")
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	runtimeOnly("org.postgresql:postgresql")
+	implementation("org.jooq:jooq:3.19.11")
+	implementation("org.jooq:jooq-meta:3.19.11")
+	implementation("org.jooq:jooq-codegen:3.19.11")
+	implementation("org.jooq:jooq-postgres-extensions:3.19.11")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	jooqCodegen("org.postgresql:postgresql:42.7.4")
 }
 
 kotlin {
@@ -37,4 +41,30 @@ kotlin {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+jooq {
+	configuration {
+		jdbc {
+			driver = "org.postgresql.Driver"
+			url = "jdbc:postgresql://localhost:5432/sample-db"
+			user = "sample-user"
+			password = "sample-pass"
+		}
+		generator {
+			database {
+				name = "org.jooq.meta.postgres.PostgresDatabase"
+				inputSchema = "public"
+				includes = ".*"
+			}
+
+			target {
+				packageName = "com.example.kotlin_spring_boot_sample.demo.jooq"
+			}
+		}
+	}
+}
+
+sourceSets["main"].java {
+	srcDir("build/generated-sources/jooq")
 }
