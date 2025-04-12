@@ -32,6 +32,12 @@ $ ./gradlew jooqCodegen
 $ ./gradlew bootRun
 ```
 
+- Detekt を使って静的解析を実施する
+
+```bash
+$ ./gradlew detekt 
+```
+
 http://localhost:8080/
 
 - 上記の手順で失敗する場合 [Troubleshoot](#Troubleshoot)を確認してください
