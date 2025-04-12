@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository
 import com.example.kotlin_spring_boot_sample.demo.jooq.tables.Customer.CUSTOMER
 
 @Repository
-class UserRepository(private val dsl: DSLContext): IUserRepository {
+class UserRepositoryImpl(private val dsl: DSLContext): UserRepository {
 
     override fun findById(id: Int): User? {
         val record = dsl.selectFrom(CUSTOMER)

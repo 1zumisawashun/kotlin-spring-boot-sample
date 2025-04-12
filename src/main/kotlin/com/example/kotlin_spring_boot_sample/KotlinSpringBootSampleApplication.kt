@@ -12,19 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @SpringBootApplication
-@RestController
-class KotlinSpringBootSampleApplication(private val userService: UserService) {
-
-	@GetMapping("/user/{id}")
-	fun getUser(@PathVariable id: Int): User? {
-		return userService.getUserById(id)
-	}
-
-	@PostMapping("/user")
-	fun createUser(@RequestBody user: User) {
-		userService.createUser(user)
-	}
-}
+class KotlinSpringBootSampleApplication
 
 fun main(args: Array<String>) {
 	runApplication<KotlinSpringBootSampleApplication>(*args)
