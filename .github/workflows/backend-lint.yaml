@@ -1,0 +1,37 @@
+name: Auto Format by detekt
+# https://toranoana-lab.hatenablog.com/entry/2025/02/18/120000
+
+on:
+  pull_request:
+    paths:
+      - "config/detekt/detekt.yml"
+      - "**/*.kt"
+
+permissions:
+  contents: write
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: "21"
+          distribution: "corretto"
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v3
+      - name: Code format by detekt
+        run: ./gradlew detekt --auto-correct --continue
+        continue-on-error: true
+      - name: Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git diff --exit-code || (git add . && git commit -m "Auto format by detekt")
+          git push

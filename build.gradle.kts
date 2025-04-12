@@ -84,6 +84,7 @@ configurations.all {
 }
 
 detekt {
-    source = files(".")
     autoCorrect = true
+    config.setFrom(file("config/detekt/detekt.yml"))
+    buildUponDefaultConfig = true
 }
