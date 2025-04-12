@@ -1,11 +1,11 @@
 package com.example.kotlin_spring_boot_sample.demo
 
+import com.example.kotlin_spring_boot_sample.demo.jooq.tables.Customer.CUSTOMER
 import org.jooq.DSLContext
 import org.springframework.stereotype.Repository
-import com.example.kotlin_spring_boot_sample.demo.jooq.tables.Customer.CUSTOMER
 
 @Repository
-class UserRepositoryImpl(private val dsl: DSLContext): UserRepository {
+class UserRepositoryImpl(private val dsl: DSLContext) : UserRepository {
 
     override fun findById(id: Int): User? {
         val record = dsl.selectFrom(CUSTOMER)
