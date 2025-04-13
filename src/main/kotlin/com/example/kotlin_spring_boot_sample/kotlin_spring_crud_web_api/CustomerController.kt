@@ -12,13 +12,9 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class CustomerController(val customerService: CustomerService) {
     @PostMapping("/customers")
-    fun insert(@RequestBody request: CustomerRequest): String {
+    fun insert(@RequestBody request: CustomerRequest): Response {
         customerService.insertCustomer(request.firstName, request.lastName)
-        return """
-            {
-                "message": "success"
-            }
-        """.trimIndent()
+        return Response(message = "success")
     }
 
     @GetMapping("/customers")
@@ -27,23 +23,15 @@ class CustomerController(val customerService: CustomerService) {
     }
 
     @PutMapping("/customers/{id}")
-    fun update(@PathVariable("id") id: Int, @RequestBody request: CustomerRequest): String {
+    fun update(@PathVariable("id") id: Int, @RequestBody request: CustomerRequest): Response {
         customerService.updateCustomer(id, request.firstName, request.lastName)
-        return """
-            {
-                "message": "success"
-            }
-        """.trimIndent()
+        return Response(message = "success")
     }
 
     @DeleteMapping("/customers/{id}")
-    fun delete(@PathVariable("id") id: Int): String {
+    fun delete(@PathVariable("id") id: Int): Response {
         customerService.deleteCustomer(id)
-        return """
-            {
-                "message": "success"
-            }
-        """.trimIndent()
+        return Response(message = "success")
     }
 }
 
@@ -55,3 +43,5 @@ data class CustomerRequest(
 data class CustomerResponse(
     val customers: List<Customer>,
 )
+
+data class Response(val message: String)

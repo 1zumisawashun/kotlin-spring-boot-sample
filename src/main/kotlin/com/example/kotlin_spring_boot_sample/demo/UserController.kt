@@ -1,5 +1,6 @@
 package com.example.kotlin_spring_boot_sample.demo
 
+import com.example.kotlin_spring_boot_sample.kotlin_spring_crud_web_api.Response
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -19,7 +20,11 @@ class UserController(private val userService: UserService) {
     }
 
     @PostMapping("/users")
-    fun createUser(@RequestBody user: User) {
+    fun createUser(@RequestBody user: User): Response {
         userService.createUser(user)
+        return Response(message = "success")
     }
 }
+
+
+data class Response(val message: String)
