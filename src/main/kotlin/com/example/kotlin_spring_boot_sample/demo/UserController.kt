@@ -16,6 +16,7 @@ class UserController(private val userService: UserService) {
 
     @GetMapping("/users/{id}")
     fun getUser(@PathVariable id: Int): User? {
+        println(id)
         return userService.getUserById(id)
     }
 

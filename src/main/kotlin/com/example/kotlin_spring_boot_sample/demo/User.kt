@@ -7,3 +7,9 @@ interface UserRepository {
     fun findById(id: Int): User?
     fun save(user: User)
 }
+
+interface UserService {
+    fun getUser(): List<User>
+    fun getUserById(id: Int): User?
+    fun createUser(user: User)
+}

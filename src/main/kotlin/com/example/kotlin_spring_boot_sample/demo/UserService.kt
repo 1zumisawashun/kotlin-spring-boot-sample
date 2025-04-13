@@ -4,19 +4,19 @@ import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-class UserService(private val userRepository: UserRepository) {
+class UserServiceImpl(private val userRepository: UserRepository) : UserService {
 
-    fun getUser(): List<User> {
+    override fun getUser(): List<User> {
         return userRepository.find()
     }
 
-    fun getUserById(id: Int): User? {
+    override fun getUserById(id: Int): User? {
         println(id)
         return userRepository.findById(id)
     }
 
     @Transactional
-    fun createUser(user: User) {
+    override fun createUser(user: User) {
         println(user)
         userRepository.save(user)
     }
