@@ -6,6 +6,10 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class UserService(private val userRepository: UserRepository) {
 
+    fun getUser(): List<User> {
+        return userRepository.find()
+    }
+
     fun getUserById(id: Int): User? {
         println(id)
         return userRepository.findById(id)

@@ -7,6 +7,11 @@ import org.springframework.stereotype.Repository
 @Repository
 class UserRepositoryImpl(private val dsl: DSLContext) : UserRepository {
 
+    override fun find(): List<User> {
+        val record = dsl.selectFrom(CUSTOMER).fetch()
+        return record.map { user -> User(id = user.id, name = user.firstName) }
+    }
+
     override fun findById(id: Int): User? {
         val record = dsl.selectFrom(CUSTOMER)
             .where(CUSTOMER.ID.eq(id))
