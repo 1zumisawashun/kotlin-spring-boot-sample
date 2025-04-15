@@ -27,5 +27,4 @@ class UserController(private val userService: UserService) {
     }
 }
 
-
 data class Response(val message: String)

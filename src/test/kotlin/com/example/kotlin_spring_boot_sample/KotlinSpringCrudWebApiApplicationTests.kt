@@ -21,28 +21,15 @@ class KotlinSpringCrudWebApiApplicationTests(@Autowired val mockMvc: MockMvc) {
     @Test
     @DisplayName("get /customers のテスト")
     fun read() {
-        /**
-         * given:
-         */
-
-        /**
-         * when:
-         * - get /customers を実行
-         * - レスポンスステータスとレスポンスボディを取得
-         */
         val response = mockMvc.perform(
             MockMvcRequestBuilders
                 .get("/customers")
                 .contentType(MediaType.APPLICATION_JSON)
         ).andReturn().response
         val actualStatus = response.status
+        println(actualStatus)
         val actualResponseBody = response.contentAsString
 
-        /**
-         * then:
-         * - ステータスコードが一致する
-         * - レスポンスボディが一致する
-         */
         val expectedStatus = HttpStatus.OK.value()
         val expectedResponseBody =
             """
