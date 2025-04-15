@@ -36,8 +36,9 @@ dependencies {
     implementation("org.jooq:jooq-postgres-extensions:3.19.11")
     jooqCodegen("org.postgresql:postgresql:42.7.4")
     // test
+    // https://docs.spring.io/spring-boot/docs/1.5.7.RELEASE/reference/html/boot-features-testing.html
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+    // testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     // detekt
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.8")
@@ -50,6 +51,8 @@ kotlin {
 }
 
 tasks.withType<Test> {
+    // https://qiita.com/gumimin/items/f15eaede3e0e5b7a11a5
+    // こちらの記述でJUnit5を有効化します。
     useJUnitPlatform()
 }
 
