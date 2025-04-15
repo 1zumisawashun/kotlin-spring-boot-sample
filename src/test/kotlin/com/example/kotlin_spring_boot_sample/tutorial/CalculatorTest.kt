@@ -1,6 +1,6 @@
 package com.example.kotlin_spring_boot_sample.tutorial
 
-import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertEquals
 // https://kotlinlang.org/api/core/kotlin-test/kotlin.test.junit5/
 import org.junit.jupiter.api.Test
 
@@ -10,7 +10,7 @@ class CalculatorTest {
         val sut = Calculator()
         val actual = sut.multiply(x = 2, y = 3)
         val expected = 6
-        assertThat(actual).isEqualTo(expected)
+        assertEquals(actual,expected)
     }
 
     @Test
@@ -18,6 +18,6 @@ class CalculatorTest {
         val sut = Calculator()
         val actual = sut.divide(x = 6, y = 3)
         val expected = 2
-        assertThat(actual).isEqualTo(expected)
+        assertEquals(actual,expected)
     }
 }
