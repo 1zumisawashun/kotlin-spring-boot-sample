@@ -1,4 +1,4 @@
-package com.example.kotlin_spring_boot_sample.demo
+package com.example.kotlinSpringBootSample.demo
 
 data class User(val id: Int, val name: String)
 

@@ -1,4 +1,4 @@
-package com.example.kotlin_spring_boot_sample
+package com.example.kotlinSpringBootSample
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

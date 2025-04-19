@@ -1,4 +1,4 @@
-package com.example.kotlin_spring_boot_sample.tutorial
+package com.example.kotlinSpringBootSample.tutorial
 
 import org.junit.jupiter.api.Assertions.assertEquals
 // https://kotlinlang.org/api/core/kotlin-test/kotlin.test.junit5/

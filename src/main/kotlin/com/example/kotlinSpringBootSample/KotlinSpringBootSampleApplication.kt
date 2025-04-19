@@ -1,4 +1,4 @@
-package com.example.kotlin_spring_boot_sample
+package com.example.kotlinSpringBootSample
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

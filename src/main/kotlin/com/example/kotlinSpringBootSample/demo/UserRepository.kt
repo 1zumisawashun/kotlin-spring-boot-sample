@@ -1,6 +1,6 @@
-package com.example.kotlin_spring_boot_sample.demo
+package com.example.kotlinSpringBootSample.demo
 
-import com.example.kotlin_spring_boot_sample.demo.jooq.tables.Users.USERS
+import com.example.kotlinSpringBootSample.demo.jooq.tables.Users.USERS
 import org.jooq.DSLContext
 import org.springframework.stereotype.Repository
 

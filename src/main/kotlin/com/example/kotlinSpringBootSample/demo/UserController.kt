@@ -1,6 +1,6 @@
-package com.example.kotlin_spring_boot_sample.demo
+package com.example.kotlinSpringBootSample.demo
 
-import com.example.kotlin_spring_boot_sample.kotlin_spring_crud_web_api.Response
+import com.example.kotlinSpringBootSample.kotlin_spring_crud_web_api.Response
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
