@@ -10,7 +10,7 @@ class CalculatorTest {
         val sut = Calculator()
         val actual = sut.multiply(x = 2, y = 3)
         val expected = 6
-        assertEquals(actual,expected)
+        assertEquals(actual, expected)
     }
 
     @Test
@@ -18,6 +18,6 @@ class CalculatorTest {
         val sut = Calculator()
         val actual = sut.divide(x = 6, y = 3)
         val expected = 2
-        assertEquals(actual,expected)
+        assertEquals(actual, expected)
     }
 }

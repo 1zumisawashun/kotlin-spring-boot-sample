@@ -1,4 +1,4 @@
-package com.example.kotlinSpringBootSample
+package com.example.kotlinSpringBootSample.jdbc
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class KotlinSpringCrudWebApiApplicationTests(@Autowired val mockMvc: MockMvc) {
+class CustomerControllerTests(@Autowired val mockMvc: MockMvc) {
     @Test
     @DisplayName("get /customers のテスト")
     fun read() {
