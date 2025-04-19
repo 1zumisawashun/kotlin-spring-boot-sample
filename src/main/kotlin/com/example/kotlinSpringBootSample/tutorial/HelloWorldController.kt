@@ -1,4 +1,4 @@
-package com.example.kotlinSpringBootSample.hello_world
+package com.example.kotlinSpringBootSample.tutorial
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
