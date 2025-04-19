@@ -1,4 +1,4 @@
-package com.example.kotlinSpringBootSample.demo
+package com.example.kotlinSpringBootSample.jooq
 
 import com.example.kotlinSpringBootSample.kotlin_spring_crud_web_api.Response
 import org.springframework.web.bind.annotation.GetMapping

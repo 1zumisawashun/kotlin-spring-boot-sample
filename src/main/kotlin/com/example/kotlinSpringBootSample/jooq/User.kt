@@ -1,4 +1,4 @@
-package com.example.kotlinSpringBootSample.demo
+package com.example.kotlinSpringBootSample.jooq
 
 data class User(val id: Int, val name: String)
 

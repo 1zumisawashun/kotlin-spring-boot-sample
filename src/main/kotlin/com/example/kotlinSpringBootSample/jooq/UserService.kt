@@ -1,4 +1,4 @@
-package com.example.kotlinSpringBootSample.demo
+package com.example.kotlinSpringBootSample.jooq
 
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
