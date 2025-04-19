@@ -1,4 +1,4 @@
-package com.example.kotlinSpringBootSample.kotlin_spring_crud_web_api
+package com.example.kotlinSpringBootSample.jdbc
 
 import org.springframework.stereotype.Service
 

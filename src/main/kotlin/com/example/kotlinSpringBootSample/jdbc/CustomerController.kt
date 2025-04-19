@@ -1,4 +1,4 @@
-package com.example.kotlinSpringBootSample.kotlin_spring_crud_web_api
+package com.example.kotlinSpringBootSample.jdbc
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.springframework.web.bind.annotation.DeleteMapping

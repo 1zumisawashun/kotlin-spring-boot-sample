@@ -1,6 +1,6 @@
 package com.example.kotlinSpringBootSample.jooq
 
-import com.example.kotlinSpringBootSample.kotlin_spring_crud_web_api.Response
+import com.example.kotlinSpringBootSample.jdbc.Response
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
