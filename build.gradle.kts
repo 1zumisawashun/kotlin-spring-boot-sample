@@ -72,7 +72,7 @@ jooq {
             }
 
             target {
-                packageName = "com.example.kotlin_spring_boot_sample.demo.jooq"
+                packageName = "com.example.kotlinSpringBootSample.jooq.jooq"
             }
         }
     }
