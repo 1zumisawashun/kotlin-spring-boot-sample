@@ -42,6 +42,8 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     // detekt
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.8")
+    // security
+    implementation("org.springframework.boot:spring-boot-starter-security")
 }
 
 kotlin {
