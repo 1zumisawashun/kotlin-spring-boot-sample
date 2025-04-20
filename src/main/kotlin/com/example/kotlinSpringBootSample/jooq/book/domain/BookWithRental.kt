@@ -16,4 +16,5 @@ interface BookRepository {
     fun findWithRental(id: Int): BookWithRental?
     fun register(book: Book)
     fun update(id: Int, title: String?, author: String?, releaseDate: LocalDate?)
+    fun delete(id: Int)
 }

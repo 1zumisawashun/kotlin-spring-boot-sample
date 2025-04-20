@@ -45,6 +45,10 @@ class BookController(
         bookService.update(request.id, request.title, request.author, request.releaseDate)
     }
 
+    @DeleteMapping("/delete/{book_id}")
+    fun delete(@PathVariable("book_id") bookId: Int) {
+        bookService.delete(bookId)
+    }
 }
 
 data class GetBookListResponse(val bookList: List<BookInfo>)

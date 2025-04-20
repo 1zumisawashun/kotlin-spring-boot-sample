@@ -18,20 +18,25 @@ class BookRepositoryImpl(
     private val dsl: DSLContext
 ) : BookRepository {
     override fun findAllWithRental(): List<BookWithRental> {
-        val record = dsl.select().from(
-            BOOK
-        ).leftJoin(USERS).on(USERS.ID.eq(BOOK.ID)).leftJoin(RENTAL).on(RENTAL.BOOK_ID.eq(BOOK.ID)).fetch()
-        println(record)
+        val record = dsl.select().from(BOOK)
+            .leftJoin(USERS)
+            .on(USERS.ID.eq(BOOK.ID))
+            .leftJoin(RENTAL)
+            .on(RENTAL.BOOK_ID.eq(BOOK.ID))
+            .fetch()
+
         return record.map { toModel(it) }
     }
 
     override fun findWithRental(id: Int): BookWithRental? {
-        val record = dsl.select().from(
-            BOOK
-        ).leftJoin(
-            USERS
-        ).on(USERS.ID.eq(BOOK.ID)).leftJoin(RENTAL).on(RENTAL.BOOK_ID.eq(BOOK.ID)).where(BOOK.ID.eq(id)).fetchOne()
-        println(record)
+        val record = dsl.select().from(BOOK)
+            .leftJoin(USERS)
+            .on(USERS.ID.eq(BOOK.ID))
+            .leftJoin(RENTAL)
+            .on(RENTAL.BOOK_ID.eq(BOOK.ID))
+            .where(BOOK.ID.eq(id))
+            .fetchOne()
+
         return record?.let { toModel(it) }
     }
 
@@ -46,10 +51,16 @@ class BookRepositoryImpl(
 
     override fun update(id: Int, title: String?, author: String?, releaseDate: LocalDate?) {
         dsl.update(BOOK)
-            .set(BOOK.ID, id) // これ必要か？
+            .set(BOOK.ID, id)
             .set(BOOK.TITLE, title)
             .set(BOOK.AUTHOR, author)
             .set(BOOK.RELEASE_DATE, releaseDate)
+            .where(BOOK.ID.eq(id))
+            .execute()
+    }
+
+    override fun delete(id: Int) {
+        dsl.deleteFrom(BOOK)
             .where(BOOK.ID.eq(id))
             .execute()
     }

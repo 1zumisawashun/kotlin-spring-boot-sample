@@ -40,6 +40,20 @@ $ ./gradlew detekt
 
 http://localhost:8080/
 
+```bash
+# 取得
+$ curl -H 'Content-Type:application/json' -X GET http://localhost:8080/book/detail/100
+
+# 登録
+$ curl -H 'Content-Type:application/json' -X POST -d '{"id":300,"title":"Spring入門","author":"コトリン太郎","releaseDate":"2025-04-20"}' http://localhost:8080/book/register
+
+# 更新
+$ curl -H 'Content-Type:application/json' -X PUT -d '{"id":300,"title":"SpringBoot入門","releaseDate":"2025-04-20"}' http://localhost:8080/book/update
+
+# 削除
+$ curl -H 'Content-Type:application/json' -X DELETE http://localhost:8080/book/delete/300
+```
+
 - 上記の手順で失敗する場合 [Troubleshoot](#Troubleshoot)を確認してください
 
 ## Troubleshoot
