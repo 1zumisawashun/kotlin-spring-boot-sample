@@ -8,6 +8,7 @@ class HelloWorldController {
     @GetMapping("/")
     @Suppress("FunctionOnlyReturningConstant")
     fun helloWorld(): String {
+        println("Hello World")
         return "Hello World"
     }
 }
