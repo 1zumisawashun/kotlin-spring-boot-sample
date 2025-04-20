@@ -1,10 +1,51 @@
 package com.example.kotlinSpringBootSample.jooq.book
 
+import com.example.kotlinSpringBootSample.jooq.book.domain.Book
 import com.example.kotlinSpringBootSample.jooq.book.domain.BookWithRental
 import com.example.kotlinSpringBootSample.jooq.book.domain.Rental
 import org.springframework.web.bind.annotation.*
 import java.time.LocalDate
 import java.time.LocalDateTime
+
+@RestController
+@RequestMapping("book")
+@CrossOrigin
+class BookController(
+    private val bookService: BookService
+) {
+    @GetMapping("/list")
+    fun getList(): GetBookListResponse {
+        val bookList = bookService.getList().map {
+            BookInfo(it)
+        }
+        return GetBookListResponse(bookList)
+    }
+
+    @GetMapping("/detail/{book_id}")
+    fun getDetail(@PathVariable("book_id") bookId: Int): GetBookDetailResponse {
+        val book = bookService.getDetail(bookId)
+        return GetBookDetailResponse(book)
+    }
+
+    @PostMapping("/register")
+    fun register(@RequestBody request: RegisterBookRequest) {
+        bookService.register(
+            Book(
+                request.id,
+                request.title,
+                request.author,
+                // release_dateだと404になる
+                request.releaseDate
+            )
+        )
+    }
+
+    @PutMapping("/update")
+    fun update(@RequestBody request: UpdateBookRequest) {
+        bookService.update(request.id, request.title, request.author, request.releaseDate)
+    }
+
+}
 
 data class GetBookListResponse(val bookList: List<BookInfo>)
 
@@ -41,23 +82,16 @@ data class RentalInfo(
     constructor(rental: Rental) : this(rental.userId, rental.rentalDatetime, rental.returnDeadline)
 }
 
-@RestController
-@RequestMapping("book")
-@CrossOrigin
-class BookController(
-    private val bookService: BookService
-) {
-    @GetMapping("/list")
-    fun getList(): GetBookListResponse {
-        val bookList = bookService.getList().map {
-            BookInfo(it)
-        }
-        return GetBookListResponse(bookList)
-    }
+data class RegisterBookRequest(
+    val id: Int,
+    val title: String,
+    val author: String,
+    val releaseDate: LocalDate
+)
 
-    @GetMapping("/detail/{book_id}")
-    fun getDetail(@PathVariable("book_id") bookId: Int): GetBookDetailResponse {
-        val book = bookService.getDetail(bookId)
-        return GetBookDetailResponse(book)
-    }
-}
+data class UpdateBookRequest(
+    val id: Int,
+    val title: String?,
+    val author: String?,
+    val releaseDate: LocalDate?
+)

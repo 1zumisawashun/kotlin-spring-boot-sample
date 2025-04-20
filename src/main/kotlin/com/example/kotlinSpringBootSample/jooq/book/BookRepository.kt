@@ -7,9 +7,11 @@ import com.example.kotlinSpringBootSample.jooq.book.domain.Rental
 import com.example.kotlinSpringBootSample.jooq.jooq.tables.Book.BOOK
 import com.example.kotlinSpringBootSample.jooq.jooq.tables.Rental.RENTAL
 import com.example.kotlinSpringBootSample.jooq.jooq.tables.Users.USERS
+import com.example.kotlinSpringBootSample.jooq.jooq.tables.records.BookRecord
 import org.jooq.DSLContext
 import org.jooq.Record
 import org.springframework.stereotype.Repository
+import java.time.LocalDate
 
 @Repository
 class BookRepositoryImpl(
@@ -31,6 +33,29 @@ class BookRepositoryImpl(
         ).on(USERS.ID.eq(BOOK.ID)).leftJoin(RENTAL).on(RENTAL.BOOK_ID.eq(BOOK.ID)).where(BOOK.ID.eq(id)).fetchOne()
         println(record)
         return record?.let { toModel(it) }
+    }
+
+    override fun register(book: Book) {
+        dsl.insertInto(BOOK)
+            .set(BOOK.ID, book.id)
+            .set(BOOK.TITLE, book.title)
+            .set(BOOK.AUTHOR, book.author)
+            .set(BOOK.RELEASE_DATE, book.releaseDate)
+            .execute()
+    }
+
+    override fun update(id: Int, title: String?, author: String?, releaseDate: LocalDate?) {
+        dsl.update(BOOK)
+            .set(BOOK.ID, id) // これ必要か？
+            .set(BOOK.TITLE, title)
+            .set(BOOK.AUTHOR, author)
+            .set(BOOK.RELEASE_DATE, releaseDate)
+            .where(BOOK.ID.eq(id))
+            .execute()
+    }
+
+    private fun toRecord(model: Book): BookRecord {
+        return BookRecord(model.id, model.title, model.author, model.releaseDate)
     }
 
     private fun toModel(record: Record): BookWithRental {
