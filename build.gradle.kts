@@ -44,6 +44,8 @@ dependencies {
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.23.8")
     // security
     implementation("org.springframework.boot:spring-boot-starter-security")
+    // jackson
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.18.+")
 }
 
 kotlin {
