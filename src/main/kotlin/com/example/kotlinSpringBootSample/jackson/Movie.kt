@@ -18,9 +18,9 @@ data class UpperCamelCaseDTO(
     private val anotherField: String? = null
 )
 
-fun main(args: Array<String>) {
-    val snakeCaseDTO = SnakeCaseDTO()
-    println(snakeCaseDTO)
-    val upperCamelCaseDTO = UpperCamelCaseDTO()
-    println(upperCamelCaseDTO)
-}
+// fun main(args: Array<String>) {
+//    val snakeCaseDTO = SnakeCaseDTO()
+//    println(snakeCaseDTO)
+//    val upperCamelCaseDTO = UpperCamelCaseDTO()
+//    println(upperCamelCaseDTO)
+// }

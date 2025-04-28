@@ -48,7 +48,7 @@ fun writeValueAsString() {
     println(company)
 }
 
-fun main(args: Array<String>) {
-    readValue()
-    writeValueAsString()
-}
+// fun main(args: Array<String>) {
+//    readValue()
+//    writeValueAsString()
+// }
