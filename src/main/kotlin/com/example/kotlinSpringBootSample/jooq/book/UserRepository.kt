@@ -6,8 +6,6 @@ import com.example.kotlinSpringBootSample.jooq.jooq.tables.records.UsersRecord
 import org.jooq.DSLContext
 import org.springframework.stereotype.Repository
 
-// TODO: 認証認可周りは構造で対応する
-
 @Repository
 class UserRepositoryImpl(
     private val dsl: DSLContext

@@ -17,7 +17,6 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler
 import org.springframework.stereotype.Service
 
-
 @Service
 class AuthenticationService(private val userRepository: UserRepository) {
     fun findUser(email: String): User? {
