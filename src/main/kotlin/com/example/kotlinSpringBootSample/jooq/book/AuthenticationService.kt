@@ -11,6 +11,7 @@ import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.AuthorityUtils
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.security.web.AuthenticationEntryPoint
 import org.springframework.security.web.access.AccessDeniedHandler
 import org.springframework.security.web.authentication.AuthenticationFailureHandler
@@ -24,20 +25,22 @@ class AuthenticationService(private val userRepository: UserRepository) {
     }
 }
 
+// MEMO: @Serviceを追加してコンポーネント登録していなかったためエラーになっていた
+@Service
 class BookManagerUserDetailsService(
     private val authenticationService: AuthenticationService
 ) : UserDetailsService {
-    override fun loadUserByUsername(username: String): UserDetails? {
-        val user = authenticationService.findUser(username)
-        return user?.let { BookManagerUserDetails(it) }
+    override fun loadUserByUsername(username: String): UserDetails {
+        val user = authenticationService.findUser(username) ?: throw UsernameNotFoundException("User not found")
+        return BookManagerUserDetails(user)
     }
 }
 
 data class BookManagerUserDetails(
     val id: Int,
     val email: String,
-    // passにする必要がある
-    val pass: String,
+    @JvmField // https://youtrack.jetbrains.com/issue/KT-24822/Unexpected-platform-declaration-clash
+    val password: String,
     val name: String,
     val roleType: RoleType
 ) : UserDetails {
@@ -46,17 +49,11 @@ data class BookManagerUserDetails(
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         return AuthorityUtils.createAuthorityList(this.roleType.toString())
     }
-
     override fun isEnabled(): Boolean = true
-
     override fun getUsername(): String = this.email
-
     override fun isCredentialsNonExpired(): Boolean = true
-
-    override fun getPassword(): String = this.pass
-
+    override fun getPassword(): String = this.password
     override fun isAccountNonExpired(): Boolean = true
-
     override fun isAccountNonLocked(): Boolean = true
 }
 

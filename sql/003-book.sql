@@ -30,5 +30,5 @@ VALUES
 
 INSERT INTO users (id, email, password, name, role_type)
 VALUES
-   (1, 'admin@test.com', '$2a$10$.kLvZAQfzNvFFlXzaQmwdeUoq2ypwaN.A/GNy32', '管理者', 'ADMIN'),
+   (1, 'admin@test.com', '$2a$10$klkv2YEQVevs1LsFHzXeVeJBg3tAkTmt0/pSTBI7pT7QsUy9ijhHK', '管理者', 'ADMIN'),
    (2, 'user@test.com', '$2a$10$dtB.bySf.ZcbOPOp3Q7ZgedqofClN56rQ6JboxBuiW02twNMcAoZS', 'ユーザー', 'USER');

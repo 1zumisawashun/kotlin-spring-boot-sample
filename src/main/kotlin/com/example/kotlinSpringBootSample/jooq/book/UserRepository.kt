@@ -25,8 +25,6 @@ class UserRepositoryImpl(
             record.password!!,
             record.name!!,
             RoleType.valueOf(record.roleType!!),
-            createdAt = "",
-            updatedAt = "",
         )
     }
 }

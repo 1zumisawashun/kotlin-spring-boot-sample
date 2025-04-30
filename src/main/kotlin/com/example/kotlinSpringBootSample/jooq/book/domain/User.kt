@@ -11,8 +11,6 @@ data class User(
     val password: String,
     val name: String,
     val roleType: RoleType,
-    val createdAt: String,
-    val updatedAt: String
 )
 
 interface UserRepository {
