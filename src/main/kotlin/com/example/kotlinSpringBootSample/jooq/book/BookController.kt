@@ -15,6 +15,7 @@ class BookController(
 ) {
     @GetMapping("/list")
     fun getList(): GetBookListResponse {
+        println("一覧")
         val bookList = bookService.getList().map {
             BookInfo(it)
         }
@@ -23,30 +24,33 @@ class BookController(
 
     @GetMapping("/detail/{book_id}")
     fun getDetail(@PathVariable("book_id") bookId: Int): GetBookDetailResponse {
+        println("詳細")
         val book = bookService.getDetail(bookId)
         return GetBookDetailResponse(book)
     }
 
-    @PostMapping("/register")
+   @PostMapping("/register")
     fun register(@RequestBody request: RegisterBookRequest) {
+        println("登録")
         bookService.register(
             Book(
                 request.id,
                 request.title,
                 request.author,
-                // release_dateだと404になる
-                request.releaseDate
+                request.releaseDate // NOTE: release_dateだと404になる
             )
         )
     }
 
     @PutMapping("/update")
     fun update(@RequestBody request: UpdateBookRequest) {
+        println("更新")
         bookService.update(request.id, request.title, request.author, request.releaseDate)
     }
 
     @DeleteMapping("/delete/{book_id}")
     fun delete(@PathVariable("book_id") bookId: Int) {
+        println("削除")
         bookService.delete(bookId)
     }
 }

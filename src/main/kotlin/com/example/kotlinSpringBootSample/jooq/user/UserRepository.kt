@@ -1,6 +1,5 @@
-package com.example.kotlinSpringBootSample.jooq.book
+package com.example.kotlinSpringBootSample.jooq.user
 
-import com.example.kotlinSpringBootSample.jooq.book.domain.*
 import com.example.kotlinSpringBootSample.jooq.jooq.tables.Users.USERS
 import com.example.kotlinSpringBootSample.jooq.jooq.tables.records.UsersRecord
 import org.jooq.DSLContext
@@ -15,6 +14,7 @@ class UserRepositoryImpl(
             .where(USERS.EMAIL.eq(email))
             .fetchOne()
 
+        println("record: $record")
         return record?.let { toModel(it) }
     }
 

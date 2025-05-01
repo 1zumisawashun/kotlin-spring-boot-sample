@@ -13,7 +13,9 @@ import org.jooq.Record
 import org.springframework.stereotype.Repository
 import java.time.LocalDate
 
+
 @Repository
+@Suppress("MatchingDeclarationName")
 class BookRepositoryImpl(
     private val dsl: DSLContext
 ) : BookRepository {
@@ -24,7 +26,7 @@ class BookRepositoryImpl(
             .leftJoin(RENTAL)
             .on(RENTAL.BOOK_ID.eq(BOOK.ID))
             .fetch()
-
+        println("record: $record")
         return record.map { toModel(it) }
     }
 
@@ -36,7 +38,7 @@ class BookRepositoryImpl(
             .on(RENTAL.BOOK_ID.eq(BOOK.ID))
             .where(BOOK.ID.eq(id))
             .fetchOne()
-
+        println("record: $record")
         return record?.let { toModel(it) }
     }
 
@@ -47,6 +49,7 @@ class BookRepositoryImpl(
             .set(BOOK.AUTHOR, book.author)
             .set(BOOK.RELEASE_DATE, book.releaseDate)
             .execute()
+        println("registered: ${book.id}")
     }
 
     override fun update(id: Int, title: String?, author: String?, releaseDate: LocalDate?) {
@@ -57,12 +60,14 @@ class BookRepositoryImpl(
             .set(BOOK.RELEASE_DATE, releaseDate)
             .where(BOOK.ID.eq(id))
             .execute()
+        println("updated: $id")
     }
 
     override fun delete(id: Int) {
         dsl.deleteFrom(BOOK)
             .where(BOOK.ID.eq(id))
             .execute()
+        println("deleted: $id")
     }
 
     private fun toRecord(model: Book): BookRecord {

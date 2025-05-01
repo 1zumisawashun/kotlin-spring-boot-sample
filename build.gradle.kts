@@ -46,6 +46,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     // jackson
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.18.+")
+    // hot restart
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
 }
 
 kotlin {

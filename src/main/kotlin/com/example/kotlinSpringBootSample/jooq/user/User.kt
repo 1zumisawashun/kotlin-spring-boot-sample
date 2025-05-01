@@ -1,4 +1,4 @@
-package com.example.kotlinSpringBootSample.jooq.book.domain
+package com.example.kotlinSpringBootSample.jooq.user
 
 enum class RoleType {
     ADMIN,

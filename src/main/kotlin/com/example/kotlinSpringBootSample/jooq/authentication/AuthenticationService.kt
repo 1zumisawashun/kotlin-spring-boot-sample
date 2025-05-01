@@ -1,8 +1,8 @@
-package com.example.kotlinSpringBootSample.jooq.book
+package com.example.kotlinSpringBootSample.jooq.authentication
 
-import com.example.kotlinSpringBootSample.jooq.book.domain.RoleType
-import com.example.kotlinSpringBootSample.jooq.book.domain.User
-import com.example.kotlinSpringBootSample.jooq.book.domain.UserRepository
+import com.example.kotlinSpringBootSample.jooq.user.RoleType
+import com.example.kotlinSpringBootSample.jooq.user.User
+import com.example.kotlinSpringBootSample.jooq.user.UserRepository
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.security.core.Authentication
@@ -31,6 +31,7 @@ class BookManagerUserDetailsService(
     private val authenticationService: AuthenticationService
 ) : UserDetailsService {
     override fun loadUserByUsername(username: String): UserDetails {
+        println("loadUserByUsername")
         val user = authenticationService.findUser(username) ?: throw UsernameNotFoundException("User not found")
         return BookManagerUserDetails(user)
     }
