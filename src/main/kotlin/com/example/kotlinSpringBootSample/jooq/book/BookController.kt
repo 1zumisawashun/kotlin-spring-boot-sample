@@ -29,7 +29,7 @@ class BookController(
         return GetBookDetailResponse(book)
     }
 
-   @PostMapping("/register")
+    @PostMapping("/register")
     fun register(@RequestBody request: RegisterBookRequest) {
         println("登録")
         bookService.register(

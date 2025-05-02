@@ -13,7 +13,6 @@ import org.jooq.Record
 import org.springframework.stereotype.Repository
 import java.time.LocalDate
 
-
 @Repository
 @Suppress("MatchingDeclarationName")
 class BookRepositoryImpl(

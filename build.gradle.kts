@@ -48,6 +48,8 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.18.+")
     // hot restart
     developmentOnly("org.springframework.boot:spring-boot-devtools")
+    // template engine
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 }
 
 kotlin {

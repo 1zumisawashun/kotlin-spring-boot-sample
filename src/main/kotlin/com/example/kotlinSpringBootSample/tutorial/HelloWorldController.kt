@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class HelloWorldController {
     @GetMapping("/")
-    @Suppress("FunctionOnlyReturningConstant")
     fun helloWorld(): String {
         println("Hello World")
-        return "Hello World"
+        return "hello"
     }
 
     @GetMapping("/health")
-    fun healthCheck() = ResponseEntity.ok("Service is healthy")
+    fun healthCheck(): ResponseEntity<String> {
+        println("Health Check")
+        return ResponseEntity.ok("Service is healthy")
+    }
 }

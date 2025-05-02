@@ -1,7 +1,6 @@
 package com.example.kotlinSpringBootSample.config
 
 import com.example.kotlinSpringBootSample.jooq.authentication.BookManagerAccessDeniedHandler
-import com.example.kotlinSpringBootSample.jooq.authentication.BookManagerAuthenticationEntryPoint
 import com.example.kotlinSpringBootSample.jooq.authentication.BookManagerAuthenticationFailureHandler
 import com.example.kotlinSpringBootSample.jooq.authentication.BookManagerAuthenticationSuccessHandler
 import org.springframework.context.annotation.Bean
@@ -42,6 +41,7 @@ class SecurityConfig {
                 authorize("/css/**", permitAll)
                 authorize("/", permitAll)
                 authorize("/book/**", permitAll)
+                authorize("/hello", permitAll)
                 authorize(anyRequest, authenticated)
             }
             // MEMO: GETの場合は問題ないのか、ここももしかしたら設定で変えられるかもしれないね
@@ -81,7 +81,6 @@ class SecurityConfig {
 //        return InMemoryUserDetailsManager(admin, user)
 //    }
 }
-
 
 // package com.example.kotlinSpringBootSample.config
 //
