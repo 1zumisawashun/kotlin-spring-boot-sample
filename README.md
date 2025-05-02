@@ -54,13 +54,19 @@ $ curl -H 'Content-Type:application/json' -X PUT -d '{"id":300,"title":"SpringBo
 $ curl -H 'Content-Type:application/json' -X DELETE http://localhost:8080/book/delete/300
 ```
 
+- spring-boot-starter-security を使った認証を検証する
 ```bash
-# コマンドラインからログインをする。cookie.txt にセッション情報が保存される
+$ curl -i http://localhost:8080/health
+# HTTP/1.1 302
+
 $ curl -i -c cookie.txt -H 'Content-Type:application/x-www-form-urlencoded' -X POST -d 'email=user@test.com' -d 'password=user' http://localhost:8080/login
+# HTTP/1.1 200
 
-# ログイン後、セッション情報を cookie.txt に保存しているので、以降のリクエストはこのファイルを指定する
-$ curl -i -b cookie.txt -H 'Content-Type:application/json' -X POST -d '{"id":400,"title":"Kotlin サーバーサイドプログラミング実践","author":"竹端尚人","releaseDate":"2020-12-24"}' http://localhost:8080/book/register
+$ cat cookie.txt
+# Netscape HTTP Cookie File
 
+$ curl -b cookie.txt http://localhost:8080/health
+# Service is healthy
 ```
 
 - 上記の手順で失敗する場合 [Troubleshoot](#Troubleshoot)を確認してください
